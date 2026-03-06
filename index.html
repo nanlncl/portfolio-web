@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>zakvisl| Creative Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body{
+  background: #f5f7fa;
+  color: black;
+  line-height: 1.6;
+}
+
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  margin-left: auto;
+  margin-right: 25px;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color:darkgray;
+  font-weight: 400;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bfff;
+}
+
+.more-menu {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left:20px;
+  user-select: none;
+}
+
+#sidebar {
+  position: fixed;
+  top:0;
+  right: -100%;
+  width: 70%; /* bisa full 100% kalau mau */
+  max-width: 300px;
+  height: 100%;
+  background: ghostwhite;
+  color: gray;
+  padding:40px 20px;
+  transition: right 0.4s ease;
+  z-index:2000;
+  display:flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0,123,255,0.3);
+}
+#sidebar ul { list-style:none; margin-top:30px; padding:0; }
+#sidebar ul li { margin:20px 0; }
+#sidebar ul li a { color: darkgray; text-decoration:none; font-size:18px; }
+#sidebar ul li a:hover { color:#00bfff; }
+
+/* Close button */
+.close-btn {
+  font-size:30px;
+  cursor:pointer;
+  align-self:flex-end;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  animation: fadeDown 1s ease forwards;
+}
+
+.hero h2 {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.hero span {
+  color: blue;
+}
+
+.hero p {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Projects */
+.projects {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px 80px;
+  
+}
+
+.projects h3 {
+  font-size: 32px;
+  margin-bottom: 25px;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 205px;
+  background: #fff;
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.4s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+.card:nth-child(4) { animation-delay: 0.8s; }
+.card:nth-child(5) { animation-delay: 1s; }
+.card:nth-child(6) { animation-delay: 1.2s; }
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card:hover {
+  background: #fafafa;
+  transform: translateY(-10px)
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+card:active {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.button {
+  margin-top: auto;
+  align-self: flex-end;
+  display: inline-block;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #00bfff, #007bff);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(45deg, lightblue, #00bfff);
+  transform: scale(1.05);
+}
+
+.card h4 {
+  margin-bottom: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.stat-box h3 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.stat-box p {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.testimonial-section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px 80px;
+  background: #f5f7fa;
+  overflow: hidden;
+  animation: fadeUp 1s ease forwards;
+}
+
+.testimonial-slider {
+  overflow: hidden;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 30px;
+  animation: scroll 5s linear infinite;
+}
+
+.testimonial-card {
+  min-width: 300px;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(0,123,255,0.3);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  color: dimgray;
+}
+
+.testimonial-card h4 {
+  margin-top: 15px;
+  font-size: 14px;
+  color: black;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.testimonial-section {
+  position: relative;
+}
+
+.testimonial-section::before,
+.testimonial-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 5px;
+}
+
+.testimonial-section::before {
+  left: 0;
+  background: linear-gradient(to right, #f5f7fa, transparent);
+}
+
+.testimonial-section::after {
+  right: 0;
+  background: linear-gradient(to left, #f5f7fa, transparent);
+}
+
+/* Footer */
+footer {
+  padding: 40px 0;
+  text-align: center;
+  color: #666;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<nav id="navbar">
+  <h1>zakvisl</h1>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="pricelist.html">Price</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+   <div class="more-menu" id="moreMenuBtn">⋮
+  </div>
+</nav>
+
+<div id="sidebar">
+  <div class="close-btn" id="closeSidebar">&times;</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Works</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+</div>
+
+<section class="hero">
+  <h2>Creative <span>Designer</span><br>& Developer</h2>
+  <p>I design modern visuals, motion graphics, and build clean websites with minimal aesthetic.</p>
+</section>
+
+<section class="projects">
+  <h3>Selected Projects</h3>
+  <div class="grid">
+    <div class="card">
+      <h4>Brand Identity</h4>
+      <p>Minimalist branding for startup company.</p>
+      <a href="design graphic.html" class="button">Selected</a>
+    </div>
+    <div class="card">
+      <h4>Motion Design</h4>
+      <p>Smooth cinematic promo video concept.</p>
+      <a href="design graphic.html" class="button">Selected</a>
+    </div>
+    <div class="card">
+      <h4>Website UI</h4>
+      <p>Modern landing page with clean layout.</p>
+      <a href="design graphic.html" class="button">Selected</a>
+    </div>
+    <div class="card">
+      <h4>Graphic Designer</h4>
+      <p>Modern and playfull and profesional design.</p>
+      <a href="design graphic.html" class="button">selected</a>
+    </div>
+     <div class="card">
+      <h4>Asset Design</h4>
+      <p>500+ asset design comercial use.</p>
+      <a href="design graphic.html" class="button">Selected</a>
+    </div>
+    <div class="card">
+     <h4>Ilustration</h4>
+      <p>Create your mascot brand for next level branding.</p>
+      <a href="design graphic.html" class="button">Selected</a>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat-box">
+    <h3>20+</h3>
+    <p>Clients Handled</p>
+  </div>
+
+  <div class="stat-box">
+    <h3>4.7★</h3>
+    <p>Average Rating</p>
+  </div>
+
+  <div class="stat-box">
+    <h3>60+</h3>
+    <p>Projects Completed</p>
+  </div>
+</section>
+
+<section class="testimonial-section">
+  <div class="testimonial-slider">
+    <div class="testimonial-track">
+
+      <div class="testimonial-card">
+        <p>"Desainnya clean dan profesional banget."</p>
+        <h4>Andi • Coffee Brand</h4>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"Fast response dan hasilnya melebihi ekspektasi."</p>
+        <h4>Salsa • Fashion Store</h4>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"Motion graphic nya smooth banget."</p>
+        <h4>Rizky • Startup Tech</h4>
+      </div>
+      
+      <div class="testimonial-card">
+        <p>"Desainnya clean dan profesional banget."</p>
+        <h4>Andi • Coffee Brand</h4>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"Fast response dan hasilnya melebihi ekspektasi."</p>
+        <h4>Salsa • Fashion Store</h4>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 zakvisl. All Rights Reserved.
+</footer>
+
+</div>
+
+<script>
+const moreBtn = document.getElementById('moreMenuBtn');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('closeSidebar');
+
+moreBtn.addEventListener('click', () => {
+  sidebar.style.right = "0";
+});
+
+closeBtn.addEventListener('click', () => {
+  sidebar.style.right = "-100%";
+});
+
+// Klik di luar sidebar → tutup
+window.addEventListener('click', (e) => {
+  if(!sidebar.contains(e.target) && !moreBtn.contains(e.target)){
+    sidebar.style.right = "-100%";
+  }
+});
+
+
+//animasi
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if(currentScroll > lastScroll && currentScroll > 200){
+    // scroll ke bawah → hide
+    navbar.style.top = "-120px";
+  } else {
+    // scroll ke atas → show
+    navbar.style.top = "0px"; // posisi di bawah hero
+  }
+
+  lastScroll = currentScroll;
+});
+</script>
+
+</body>
+</html>

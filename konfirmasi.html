@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konfirmasi Order</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f5f7fa;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  margin-left: auto;
+  margin-right: 25px;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color:darkgray;
+  font-weight: 400;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bfff;
+}
+
+.more-menu {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left:20px;
+  user-select: none;
+}
+
+#sidebar {
+  position: fixed;
+  top:0;
+  right: -100%;
+  width: 70%; /* bisa full 100% kalau mau */
+  max-width: 300px;
+  height: 100%;
+  background: ghostwhite;
+  color: gray;
+  padding:40px 20px;
+  transition: right 0.4s ease;
+  z-index:2000;
+  display:flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0,123,255,0.3);
+}
+#sidebar ul { list-style:none; margin-top:30px; padding:0; }
+#sidebar ul li { margin:20px 0; }
+#sidebar ul li a { color: darkgray; text-decoration:none; font-size:18px; }
+#sidebar ul li a:hover { color:#00bfff; }
+
+/* Close button */
+.close-btn {
+  font-size:30px;
+  cursor:pointer;
+  align-self:flex-end;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding-top: 40px;
+    padding-right: 20px;
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #6366f1;
+    outline: none;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.payment-card {
+    border: 2px solid #e5e7eb;
+    padding: 15px;
+    border-radius: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.payment-card:hover {
+    border-color: #6366f1;
+}
+
+.payment-card.active {
+    border-color: #6366f1;
+    background: #eef2ff;
+}
+
+.payment-card img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.order-summary {
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.total {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(45deg, #00bfff, #007bff);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4f46e5;
+}
+
+.popup{
+   position: fixed;
+   inset:0;
+   background: rgba(0,0,0,0.4);
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   opacity:0;
+   pointer-events:none;
+   transition:0.3s;
+}
+
+.popup.active{
+   opacity:1;
+   pointer-events:auto;
+}
+
+.popup-box{
+   background:#fff;
+   padding:30px;
+   border-radius:20px;
+   text-align:center;
+   width:90%;
+   max-width:380px;
+   animation: smoothUp 0.3s ease;
+}
+
+.popup-btn{
+   display:flex;
+   flex-direction:column;
+   gap:10px;
+   margin-top:20px;
+}
+
+.btn-primary{
+   background:#6366f1;
+   color:white;
+   padding:12px;
+   border:none;
+   border-radius:12px;
+   cursor:pointer;
+}
+
+.btn-secondary{
+   background:#f3f4f6;
+   padding:12px;
+   border-radius:12px;
+   text-decoration:none;
+   color:#333;
+   text-align:center;
+}
+
+@keyframes smoothUp{
+   from{transform:translateY(20px);opacity:0;}
+   to{transform:translateY(0);opacity:1;}
+}
+
+@media(max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+    
+        <nav id="navbar">
+      <h1>zakvisl</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricelist.html">Price</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+       <div class="more-menu" id="moreMenuBtn">⋮
+      </div>
+    </nav>
+    
+    <div id="sidebar">
+      <div class="close-btn" id="closeSidebar">&times;</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+
+<div class="container">
+
+    <!-- FORM CUSTOMER -->
+    <div class="card">
+        <h2>Konfirmasi Order</h2>
+
+        <div class="form-group">
+            <input type="text" placeholder="Nama Lengkap">
+        </div>
+
+        <div class="form-group">
+            <input type="email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <input type="text" placeholder="No WhatsApp">
+        </div>
+
+        <div class="form-group">
+            <textarea rows="3" placeholder="Catatan tambahan (opsional)"></textarea>
+        </div>
+
+        <h2 style="margin-top:25px;">Metode Pembayaran</h2>
+
+        <div class="payment-methods">
+            <div class="payment-card" onclick="selectPayment(this)">
+                <img src="https://img.icons8.com/color/48/bank-card-back-side.png"/>
+                <div>Bank Transfer</div>
+            </div>
+
+            <div class="payment-card" onclick="selectPayment(this)">
+                <img src="https://img.icons8.com/color/48/000000/visa.png"/>
+                <div>Credit Card</div>
+            </div>
+
+            <div class="payment-card" onclick="selectPayment(this)">
+                <img src="https://img.icons8.com/color/48/000000/paypal.png"/>
+                <div>PayPal</div>
+            </div>
+
+            <div class="payment-card" onclick="selectPayment(this)">
+                <img src="https://img.icons8.com/color/48/apple-pay.png"/>
+                <div>E-Wallet</div>
+            </div>
+        </div>
+
+        <button type="button" onclick="bukaPopup()">
+   Konfirmasi & Bayar
+</button>
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="card">
+        <h2>Ringkasan Pesanan</h2>
+
+  <div class="summary-item">
+    <span id="namaPaket">-</span>
+    <span id="hargaPaket">Rp 0</span>
+</div>
+
+<div class="summary-item">
+    <span>Biaya Admin</span>
+    <span>Rp 5.000</span>
+</div>
+
+<div class="summary-item total">
+    <span>Total</span>
+    <span id="totalHarga">Rp 0</span>
+</div>
+
+<div id="popupKonfirmasi" class="popup">
+   <div class="popup-box">
+      <h3>Pesanan Siap Diproses 🎉</h3>
+      <p>Pilih langkah selanjutnya</p>
+
+      <div class="popup-btn">
+         <button onclick="kirimWhatsApp()" class="btn-primary">
+            Lanjut ke WhatsApp
+         </button>
+
+         <a href="pricelist.html" class="btn-secondary">
+            Kembali ke Pricelist
+         </a>
+      </div>
+   </div>
+</div>
+
+<script>
+
+
+function selectPayment(element) {
+    const cards = document.querySelectorAll('.payment-card');
+    cards.forEach(card => card.classList.remove('active'));
+    element.classList.add('active');
+}
+
+const params = new URLSearchParams(window.location.search);
+const paket = params.get("paket");
+const harga = params.get("harga");
+
+if(paket && harga){
+    const hargaNumber = parseInt(harga);
+    const admin = 5000;
+    const total = hargaNumber + admin;
+
+    document.getElementById("namaPaket").innerText = "Paket " + paket;
+    document.getElementById("hargaPaket").innerText =
+        "Rp " + hargaNumber.toLocaleString("id-ID");
+
+    document.getElementById("totalHarga").innerText =
+        "Rp " + total.toLocaleString("id-ID");
+}
+
+function bukaPopup(){
+   document.getElementById("popupKonfirmasi").classList.add("active");
+}
+
+function kirimWhatsApp(){
+   const paket = document.getElementById("namaPaket").innerText;
+   const total = document.getElementById("totalHarga").innerText;
+
+   const nomorAdmin = "6281234567890"; // ganti nomor kamu
+
+   const pesan =
+`Halo, saya ingin order:
+
+${paket}
+Total: ${total}`;
+
+   window.open(`https://wa.me/${nomorAdmin}?text=${encodeURIComponent(pesan)}`, "_blank");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricelist Desain</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f9fafb;
+  color: #111;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  margin-left: auto;
+  margin-right: 25px;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color:darkgray;
+  font-weight: 400;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bfff;
+}
+
+.more-menu {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left:20px;
+  user-select: none;
+}
+
+#sidebar {
+  position: fixed;
+  top:0;
+  right: -100%;
+  width: 70%; /* bisa full 100% kalau mau */
+  max-width: 300px;
+  height: 100%;
+  background: ghostwhite;
+  color: gray;
+  padding:40px 20px;
+  transition: right 0.4s ease;
+  z-index:2000;
+  display:flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0,123,255,0.3);
+}
+#sidebar ul { list-style:none; margin-top:30px; padding:0; }
+#sidebar ul li { margin:20px 0; }
+#sidebar ul li a { color: darkgray; text-decoration:none; font-size:18px; }
+#sidebar ul li a:hover { color:#00bfff; }
+
+/* Close button */
+.close-btn {
+  font-size:30px;
+  cursor:pointer;
+  align-self:flex-end;
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 80px 20px 40px;
+  animation: fadeDown 1s ease forwards;
+}
+
+header h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+header p {
+  margin-top: 10px;
+  color: #666;
+  font-size: 15px;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px 80px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr; /* cuma 1 kolom */
+  gap: 30px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.4s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* Delay animasi tiap card */
+.card:nth-child(1) { animation-delay: 0.2s; }
+.card:nth-child(2) { animation-delay: 0.4s; }
+.card:nth-child(3) { animation-delay: 0.6s; }
+.card:nth-child(4) { animation-delay: 0.8s; }
+.card:nth-child(5) { animation-delay: 1.0s; }
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+.card ul {
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+.card ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* BUTTON */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #00bfff, #007bff);
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.button:hover {
+  background: #333;
+  transform: scale(1.05);
+}
+
+/* ANIMATION KEYFRAMES */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+footer {
+  padding: 40px 0;
+  text-align: center;
+  color: #666;
+}
+
+</style>
+</head>
+
+<body>
+  
+  <nav id="navbar">
+  <h1>zakvisl</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#">price</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+   <div class="more-menu" id="moreMenuBtn">⋮
+  </div>
+</nav>
+
+<div id="sidebar">
+  <div class="close-btn" id="closeSidebar">&times;</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Works</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+</div>
+
+<header>
+  <h1>Pricelist Desain</h1>
+  <p>Pilih layanan sesuai kebutuhan kamu</p>
+</header>
+
+<div class="container">
+  <div class="grid">
+
+    <div class="card">
+      <h3>1 Desain</h3>
+      <div class="price">Rp50.000</div>
+      <ul>
+        <li>✔ 1 konsep desain</li>
+        <li>✔ 2x revisi</li>
+        <li>✔ File JPG/PNG</li>
+      </ul>
+      <a href="konfirmasi.html?paket=1 Desain&harga=50000" class="button">
+        Order Sekarang
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>Paket Basic</h3>
+      <div class="price">Rp130.000</div>
+      <ul>
+        <li>✔ 3 desain</li>
+        <li>✔ 3x revisi</li>
+        <li>✔ File JPG/PNG</li>
+      </ul>
+      <a href="konfirmasi.html?paket=Basic&harga=130000" class="button">
+        Order Sekarang
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>Paket Premium</h3>
+      <div class="price">Rp250.000</div>
+      <ul>
+        <li>✔ 5 desain</li>
+        <li>✔ Unlimited revisi</li>
+        <li>✔ File source (PSD/AI)</li>
+      </ul>
+      <a href="konfirmasi.html?paket=Premium&harga=250000" class="button">
+        Order Sekarang
+      </a>
+    </div>
+    
+    <div class="card">
+      <h3>Paket Ultra</h3>
+      <div class="price">Rp400.000</div>
+      <ul>
+        <li>✔ 8–10 desain custom</li>
+        <li>✔ Unlimited revisi (selama konsep sama)</li>
+        <li>✔ File JPG/PNG + Source File (PSD/AI)</li>
+        <li>✔ Free resize semua platform</li>
+        <li>✔ Bonus 1 desain tambahan</li>
+      </ul>
+      <a href="konfirmasi.html?paket=Ultra&harga=400000" class="button">
+        Order Sekarang
+      </a>
+    </div>
+    
+    <div class="card">
+      <h3>Paket Bulanan</h3>
+      <div class="price">Rp750.000</div>
+      <ul>
+        <li>✔ 15 desain custom</li>
+        <li>✔ Unlimited revisi (selama konsep sama)</li>
+        <li>✔ Template editable</li>
+        <li>✔ File JPG/PNG + Source File (PSD/AI)</li>
+        
+        <li>✔ Free resize semua platform</li>
+        <li>✔ Bonus 3 desain tambahan</li>
+      </ul>
+      <a href="konfirmasi.html?paket=Bulanan&harga=750000" class="button">
+        Order Sekarang
+      </a>
+    </div>
+
+  </div>
+  <footer>
+  © 2026 zakvisl. All Rights Reserved.
+</footer>
+</div>
+
+<<script>
+  const moreBtn = document.getElementById('moreMenuBtn');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('closeSidebar');
+
+moreBtn.addEventListener('click', () => {
+  sidebar.style.right = "0";
+});
+
+closeBtn.addEventListener('click', () => {
+  sidebar.style.right = "-100%";
+});
+
+// Klik di luar sidebar → tutup
+window.addEventListener('click', (e) => {
+  if(!sidebar.contains(e.target) && !moreBtn.contains(e.target)){
+    sidebar.style.right = "-100%";
+  }
+});
+
+
+
+</script>
+</body>
+</html>

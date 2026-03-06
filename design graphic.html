@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Desain</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #f5f7fa;
+  color: #333;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  margin-left: auto;
+  margin-right: 25px;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color:darkgray;
+  font-weight: 400;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bfff;
+}
+
+.more-menu {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left:20px;
+  user-select: none;
+}
+
+#sidebar {
+  position: fixed;
+  top:0;
+  right: -100%;
+  width: 70%; /* bisa full 100% kalau mau */
+  max-width: 300px;
+  height: 100%;
+  background: ghostwhite;
+  color: gray;
+  padding:40px 20px;
+  transition: right 0.4s ease;
+  z-index:2000;
+  display:flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0,123,255,0.3);
+}
+#sidebar ul { list-style:none; margin-top:30px; padding:0; }
+#sidebar ul li { margin:20px 0; }
+#sidebar ul li a { color: darkgray; text-decoration:none; font-size:18px; }
+#sidebar ul li a:hover { color:#00bfff; }
+
+/* Close button */
+.close-btn {
+  font-size:30px;
+  cursor:pointer;
+  align-self:flex-end;
+}
+
+header {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+header h1 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+header p {
+  margin-top: 10px;
+  color: #777;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding-bottom: 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 12px;
+  background: linear-gradient(45deg, #00bfff, #007bff);
+  color: #fff;
+  font-size: 12px;
+  border-radius: 50px;
+}
+
+footer {
+  padding: 40px 0;
+  text-align: center;
+  color: #666;
+}
+</style>
+</head>
+
+<body>
+  
+<nav id="navbar">
+  <h1>zakvisl</h1>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="order.html">Price</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+   <div class="more-menu" id="moreMenuBtn">⋮
+  </div>
+</nav>
+
+<div id="sidebar">
+  <div class="close-btn" id="closeSidebar">&times;</div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Works</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">FAQ</a></li>
+  </ul>
+</div>
+
+<header>
+  <h1>Portfolio Desain Saya</h1>
+  <p>Kumpulan hasil desain terbaik yang pernah saya buat</p>
+</header>
+
+<div class="container">
+  <div class="grid">
+
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="design1.png">
+      <div class="card-content">
+        <h3>Desain Poster Event</h3>
+        <p>Poster modern dengan konsep minimalis dan tipografi bold untuk meningkatkan daya tarik visual acara.</p>
+        <span class="tag">Poster</span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img srcset="design2.jpg" src="design2.jpg" alt="design2.jpg">
+      <div class="card-content">
+        <h3>Desain Feed Instagram</h3>
+        <p>Template feed Instagram dengan palet warna konsisten dan layout clean agar branding lebih profesional.</p>
+        <span class="tag">Social Media</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="design3.png" alt="" />
+      <div class="card-content">
+        <h3>Desain Banner Promosi</h3>
+        <p>Banner promosi produk dengan visual kuat dan fokus pada headline agar pesan tersampaikan jelas.</p>
+        <span class="tag">Banner</span>
+      </div>
+    </div>
+    
+        <div class="card">
+      <img src="design4.png" alt="" />
+      <div class="card-content">
+        <h3>Desain Thumbnail</h3>
+        <p>Thubmnal youtube, tiktok, instagram dll, dengan visual yang menarik dan unik sskaligus profesional.</p>
+        <span class="tag">Thumbnail</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<footer>
+    © 2026 zakvisl. All Rights Reserved.
+</footer>
+<script>
+  const moreBtn = document.getElementById('moreMenuBtn');
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('closeSidebar');
+
+moreBtn.addEventListener('click', () => {
+  sidebar.style.right = "0";
+});
+
+closeBtn.addEventListener('click', () => {
+  sidebar.style.right = "-100%";
+});
+</script>
+
+</body>
+</html>

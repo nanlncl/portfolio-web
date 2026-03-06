@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:#f8fafc;
+  color:#111827;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav h1 {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+nav ul {
+  margin-left: auto;
+  margin-right: 25px;
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color:darkgray;
+  font-weight: 400;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  color: #00bfff;
+}
+
+.more-menu {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left:20px;
+  user-select: none;
+}
+
+#sidebar {
+  position: fixed;
+  top:0;
+  right: -100%;
+  width: 70%; /* bisa full 100% kalau mau */
+  max-width: 300px;
+  height: 100%;
+  background: ghostwhite;
+  color: gray;
+  padding:40px 20px;
+  transition: right 0.4s ease;
+  z-index:2000;
+  display:flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0,123,255,0.3);
+}
+#sidebar ul { list-style:none; margin-top:30px; padding:0; }
+#sidebar ul li { margin:20px 0; }
+#sidebar ul li a { color: darkgray; text-decoration:none; font-size:18px; }
+#sidebar ul li a:hover { color:#00bfff; }
+
+/* Close button */
+.close-btn {
+  font-size:30px;
+  cursor:pointer;
+  align-self:flex-end;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 20px;
+}
+
+.header{
+  text-align:center;
+  margin-bottom:60px;
+}
+
+.header h1{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.header p{
+  color:#6b7280;
+  max-width:500px;
+  margin:auto;
+}
+
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+/* LEFT FORM */
+.form-box{
+  background:#f3f4f6;
+  padding:40px;
+  border-radius:20px;
+}
+
+.form-box h2{
+  margin-bottom:25px;
+}
+
+.form-row{
+  display:flex;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+input, textarea{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:none;
+  outline:none;
+  background:white;
+  font-size:14px;
+}
+
+textarea{
+  height:150px;
+  resize:none;
+  margin-bottom:20px;
+}
+
+button{
+  padding:14px 28px;
+  background: linear-gradient(45deg, #00bfff, #007bff);
+  color:white;
+  border:none;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#374151;
+  transform:translateY(-2px);
+}
+
+/* RIGHT SIDE */
+.details h2{
+  margin-bottom:15px;
+}
+
+.details p{
+  color:#6b7280;
+  margin-bottom:25px;
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.detail-card{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.05);
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.icon{
+  background:#111827;
+  color:white;
+  width:45px;
+  height:45px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:10px;
+  font-size:18px;
+}
+
+.social{
+  margin-top:40px;
+}
+
+.social span{
+  font-weight:600;
+  margin-right:15px;
+}
+
+.social a{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:35px;
+  height:35px;
+  background:#e5e7eb;
+  border-radius:8px;
+  margin-right:10px;
+  text-decoration:none;
+  color:#111827;
+  transition:0.3s;
+}
+
+.social a:hover{
+  background:#111827;
+  color:white;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .contact-wrapper{
+    grid-template-columns:1fr;
+  }
+
+  .detail-grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-row{
+    flex-direction:column;
+  }
+}
+
+footer {
+  padding-top: 45px;
+  text-align: center;
+  color: #666;
+}
+
+</style>
+</head>
+<body>
+  
+  <nav id="navbar">
+      <h1>zakvisl</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pricelist.html">Price</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+       <div class="more-menu" id="moreMenuBtn">⋮
+      </div>
+    </nav>
+    
+    <div id="sidebar">
+      <div class="close-btn" id="closeSidebar">&times;</div>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Works</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Connect with Our Team</h1>
+    <p>Silakan hubungi kami melalui form atau detail kontak berikut.</p>
+  </div>
+
+  <div class="contact-wrapper">
+
+    <!-- LEFT -->
+    <div class="form-box">
+      <h2>Get in Touch with Us</h2>
+
+      <div class="form-row">
+        <input type="text" placeholder="Input your name">
+        <input type="email" placeholder="Input your email">
+      </div>
+
+      <input type="text" placeholder="Subject" style="margin-bottom:15px;">
+      <textarea placeholder="Submit your message request"></textarea>
+
+      <button>Send Message</button>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="details">
+      <h2>Contact Details</h2>
+      <p>Kami siap membantu project atau pertanyaan Anda.</p>
+
+      <div class="detail-grid">
+
+        <div class="detail-card">
+          <div class="icon">📍</div>
+          <div>
+            <strong>Address</strong><br>
+            Tuban, Jawa Timur
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <div class="icon">📞</div>
+          <div>
+            <strong>Mobile</strong><br>
+            +62 812 **** 6105
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <div class="icon">⏰</div>
+          <div>
+            <strong>Availability</strong><br>
+            09.00 - 21.00
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <div class="icon">✉️</div>
+          <div>
+            <strong>Email</strong><br>
+            za*****d@gmail.com
+          </div>
+        </div>
+
+      </div>
+
+      <div class="social">
+        <span>Social Media:</span>
+        <a href="#">📱</a>
+        <a href="#">📸</a>
+        <a href="#">🎵</a>
+        <a href="#">💼</a>
+      </div>
+
+    </div>
+
+  </div>
+<footer>
+  © 2026 zakvisl. All Rights Reserved.
+</footer>
+</div>
+
+</body>
+</html>
